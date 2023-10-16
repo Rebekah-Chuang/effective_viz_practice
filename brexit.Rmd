@@ -1,6 +1,6 @@
 ---
 title: "Brexit"
-author: "Your Name"
+author: "Rebekah Chuang"
 output: html_document
 ---
 
@@ -20,6 +20,7 @@ The data from the survey is in `data/brexit.csv`.
 
 ```{r message = FALSE}
 brexit <- read_csv("data/brexit.csv")
+brexit
 ```
 
 In the course, we made the following visualisation.
@@ -62,7 +63,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region,
     nrow = 1, labeller = label_wrap_gen(width = 12),
-    # ___
+    scales = "free_x"
   ) +
   guides(fill = FALSE) +
   labs(
@@ -78,6 +79,10 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
   )) +
   theme_minimal()
 ```
+
+After adding `scales = "free_x"` as an argument to the `facet_wrap()` function, the x-axis scales in each facet vary independently based on the data. This adjustment allows users to interpret the data within each facet more effectively and gain a better understanding of the proportions of each answer, as well as how the results compare across different areas.
+
+In the original plot, the bars for **London** and **Scotland** appeared relatively small compared to other areas. However, when looking at the updated plots, it becomes evident that the proportion of answers categorized as **Wrong** is nearly the same for each area.
 
 ### Exercise 2 - Comparing proportions across facets
 
